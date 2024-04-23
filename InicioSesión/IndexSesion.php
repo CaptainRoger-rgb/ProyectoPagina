@@ -7,9 +7,7 @@
 <!--Esta es una prueba para ver si se realzian bien los cambios-->
 <!--Esta es una segunda prueba para ver si se realzian bien los cambios-->
 
-<!--Como estan chavos les gusta este repositorio-->
-<!--Esta es una prueba de actualizacion 3-->
-<!--Esta es una prueba de actualizacion 6-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
