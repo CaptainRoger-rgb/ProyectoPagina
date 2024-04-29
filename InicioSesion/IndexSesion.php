@@ -1,8 +1,40 @@
 <?php
-    //solicitar el archivo de conexion a la base de datos
+    //solicitar el archivo de conexion a la base de datos    
     //include 'Conexion.php';
     require_once "../conexion.php";
     //$sql = "SELECT * FROM administradores "; /imgsesion/coexion.
+    //Llamar a la conexion a la base de datos
+    session_start();
+
+if($_POST){
+    $email = $_POST['CorreoElectronico'];
+    $pass = $_POST['Contraseña'];
+
+    $sql = "SELECT id_admin, Contraseña, NombreCompleto FROM administradores WHERE CorreoElectronico='$usuario'";
+    echo $sql;
+
+    $resultado = $mysqli->query($sql);
+    $num = $resultado->num_rows;
+
+    if($num>0){
+        $row = $resultado->fetch_assoc();
+        $password_bd = $row['Contraseña'];        
+
+        if($password_bd){
+            $_SESSION['id_admin'] = $row['id_Admin'];
+            $_SESSION['NombreCompleto'] = $row['NombreCompleto'];            
+
+            header("Location: administrador/admin.php");
+
+        }else{
+            echo "La contraseña no coincide";
+
+        }
+
+    }else{
+        echo"No existe el usuario";
+    }   
+}
 ?>
 <!--Esta es una prueba para ver si se realzian bien los cambios-->
 <!--Esta es una segunda prueba para ver si se realzian bien los cambios-->
@@ -42,18 +74,18 @@
             
             <!--LO0GIN-->
             <div class="form login_form">
-                <form action="administrador/admin.html" method="POST">
+                <form action="#" method="POST">
                     <h2>Login</h2>
                         
                     <div class="input_box">
                         <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="email" placeholder="Ingresa tu Email" required>
+                        <input type="email" name="email" placeholder="Ingresa tu Email" required>
                         <i class="uil uil-envelope-alt email"></i><!-- Icono -->                        
                     </div>
 
                     <div class="input_box">
                         <!-- ingresar Contraseña y poner un Icono en el TextBox -->
-                        <input type="password" placeholder="Ingresa tu Contraseña" required>
+                        <input type="password" name="pass" placeholder="Ingresa tu Contraseña" required>
                         <i class="uil uil-lock password"></i><!-- Icono -->
                         <i class="uil uil-eye-slash pw_hide"></i><!-- Icono Para ocultar y ver Contraseña -->
                     </div>
@@ -67,10 +99,12 @@
                         <a href="#" class="forgot_pw">¿Olvidaste tu Contraseña?</a>
                     </div>
 
-                    <button class="button">Iniciar Sesión</button>
-                    <div class="login_signup">¿No Tienes Cuenta? <a href="admin.html" id="signup">Registrarse</a></div>
-                </form>
+                    <button class="button" name="boton">Iniciar Sesión</button>
+                    <div class="login_signup">¿No Tienes Cuenta? <a href="" id="signup">Registrarse</a></div>
+                </form>                  
             </div>
+            <?php echo $mensaje;?>              
+            
             
             <!--REGISTROS-->
             <div class="form signup_form">

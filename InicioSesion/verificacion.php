@@ -6,8 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/administrador/admin.html" method=POST>
-        <input type=submit value=submit>
-    </form>
+    <h2>HOLA</h2>
 </body>
 </html>

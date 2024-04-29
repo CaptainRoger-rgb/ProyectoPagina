@@ -1,3 +1,15 @@
+<?php 
+session_start();
+
+if(!isset($_SESSION['id'])){
+    header("Location: InicioIndexSesion.php");
+
+}
+
+$nombre=$_SESSION['NombreCompleto'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
