@@ -1,5 +1,6 @@
 <?php
     //solicitar el archivo de conexion a la base de datos
+    //Incluir cambios 
     //include 'Conexion.php';
     require_once "../conexion.php";
     session_start();
